@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pixel-lift",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  "assets": { "directory": "./public", "binding": "ASSETS", "run_worker_first": ["/api/*"] },
+  "images": { "binding": "IMAGES" },
+  "r2_buckets": [{ "binding": "BUCKET", "bucket_name": "pixel-lift-images" }],
+  "d1_databases": [{ "binding": "DB", "database_name": "pixel-lift-db", "database_id": "REPLACE_WITH_D1_DATABASE_ID", "migrations_dir": "migrations" }],
+  "queues": {
+    "producers": [{ "binding": "UPSCALE_QUEUE", "queue": "pixel-lift-upscale" }],
+    "consumers": [{ "queue": "pixel-lift-upscale", "max_batch_size": 1, "max_batch_timeout": 5, "max_retries": 3, "dead_letter_queue": "pixel-lift-upscale-dlq" }]
+  },
+  "triggers": { "crons": ["17 * * * *"] },
+  "vars": { "APP_NAME": "PixelLift", "MAX_UPLOAD_MB": "10", "RETENTION_HOURS": "24", "UPSCALE_PROVIDER": "cloudflare-images" },
+  "observability": { "enabled": true, "head_sampling_rate": 1 }
+}

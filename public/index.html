@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Upscale images to crisp 2× or 4× resolution."><meta name="theme-color" content="#0a0c10">
+  <title>PixelLift — Image Upscaler</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="ambient one"></div><div class="ambient two"></div>
+  <header><a class="brand" href="/" aria-label="PixelLift home"><span class="mark">P</span>PixelLift</a><span class="privacy"><i></i>Private by default</span></header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">✦ Cloud-powered clarity</div>
+      <h1>Small image.<br><span>Big comeback.</span></h1>
+      <p class="lede">Turn low-resolution images into clean, high-quality assets in a few seconds. No account required.</p>
+      <div class="shell">
+        <section id="uploadView" class="card">
+          <div id="dropZone" class="drop" tabindex="0" role="button" aria-describedby="fileHint">
+            <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+            <div class="upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v3.5A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5V14"/></svg></div>
+            <h2>Drop an image here</h2><p>or <b>browse your files</b></p>
+            <small id="fileHint">PNG, JPG or WebP · Up to <span id="maxSize">10</span> MB</small>
+          </div>
+          <div id="selectedFile" class="selected" hidden><img id="thumbPreview" alt="Selected image preview"><div><strong id="fileName"></strong><span id="fileDetails"></span></div><button id="removeFile" aria-label="Remove image">×</button></div>
+          <div class="controls">
+            <fieldset><legend>Upscale size</legend><div class="segments"><label><input type="radio" name="scale" value="2" checked><span>2× <small>Balanced</small></span></label><label><input type="radio" name="scale" value="4"><span>4× <small>Maximum</small></span></label></div></fieldset>
+            <fieldset><legend>Export format</legend><div class="segments formats"><label><input type="radio" name="format" value="png" checked><span>PNG</span></label><label><input type="radio" name="format" value="jpeg"><span>JPG</span></label><label><input type="radio" name="format" value="webp"><span>WebP</span></label></div></fieldset>
+          </div>
+          <div id="turnstileSlot"></div>
+          <button id="upscaleButton" class="primary" disabled><span>Upscale image</span><span>↗</span></button>
+          <p class="retention">ⓘ Files are automatically deleted after <span id="retentionHours">24</span> hours.</p>
+        </section>
+        <section id="processingView" class="processing" hidden aria-live="polite">
+          <div class="process-image"><img id="processingPreview" alt="Image being upscaled"><i class="scan"></i><i class="grid"></i></div>
+          <div class="process-copy"><i class="loader"></i><h2>Lifting every pixel…</h2><p id="processingMessage">Your image is queued for processing.</p><div class="track"><span id="progressBar"></span></div><small id="progressLabel">Preparing · 15%</small></div>
+        </section>
+        <section id="resultView" class="result" hidden>
+          <div class="result-head"><span><i>✓</i> Upscale complete</span><button id="startOver">Start over</button></div>
+          <div id="comparison" class="compare"><img id="afterImage" alt="Upscaled result"><div id="beforeWrap"><img id="beforeImage" alt="Original image"></div><b class="before">Before</b><b class="after">After</b><input id="comparisonSlider" type="range" min="0" max="100" value="50" aria-label="Compare original and upscaled image"><span id="sliderHandle" class="handle">↔</span></div>
+          <div class="stats"><div><small>Original</small><strong id="originalStats">—</strong></div><em>→</em><div><small>Upscaled</small><strong id="resultStats">—</strong></div><a id="downloadButton" class="primary" href="#" download>Download ↓</a></div>
+        </section>
+        <section id="errorView" class="error" hidden role="alert"><i>!</i><h2>We couldn’t upscale that image</h2><p id="errorMessage">Please try again.</p><button id="tryAgain">Try again</button></section>
+      </div>
+    </section>
+    <section class="trust"><div><span>01</span><strong>No sign-up</strong><p>Start immediately. No account or credit card.</p></div><div><span>02</span><strong>Edge-fast</strong><p>Powered by Cloudflare's global network.</p></div><div><span>03</span><strong>Auto-delete</strong><p>Your uploads disappear after 24 hours.</p></div></section>
+  </main>
+  <footer><span>© 2026 PixelLift</span><span>Built on Cloudflare</span></footer>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
