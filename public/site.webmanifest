@@ -1,0 +1,9 @@
+{
+  "name": "Nexora ERP",
+  "short_name": "Nexora",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f8f5",
+  "theme_color": "#0c251f",
+  "icons": []
+}
